@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-900: #0a0f1c;
+  --color-navy-800: #111827;
+  --color-navy-700: #1e293b;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+}
+
+@layer base {
+  body {
+    @apply bg-navy-900 text-gray-100 antialiased;
+    background: radial-gradient(circle at top right, #1e293b, #0a0f1c);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+  
+  .glass-input {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 focus:border-accent/50 focus:ring-1 focus:ring-accent/50 outline-none transition-all;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Markdown Content Styles */
+.prose-custom {
+  @apply text-gray-200 leading-relaxed;
+}
+.prose-custom p {
+  @apply mb-4 last:mb-0;
+}
+.prose-custom ul {
+  @apply list-disc pl-5 mb-4 space-y-1;
+}
+.prose-custom li {
+  @apply pl-1;
+}
+.prose-custom strong {
+  @apply font-semibold text-white;
+}
+.prose-custom code {
+  @apply bg-white/10 px-1.5 py-0.5 rounded text-sm font-mono text-accent;
+}
+.prose-custom pre {
+  @apply bg-black/50 p-4 rounded-lg overflow-x-auto mb-4 border border-white/10;
+}
+.prose-custom pre code {
+  @apply bg-transparent p-0 text-gray-300;
+}
+.prose-custom blockquote {
+  @apply border-l-4 border-accent/50 pl-4 italic text-gray-400 my-4;
+}
+.prose-custom table {
+  @apply w-full text-left border-collapse my-4;
+}
+.prose-custom th {
+  @apply bg-white/10 p-2 border border-white/10 font-semibold text-white;
+}
+.prose-custom td {
+  @apply p-2 border border-white/10;
+}
