@@ -184,6 +184,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
   };
 
   // Voice input via Web Speech Recognition API
+  const voiceBaseTextRef = useRef('');
   const handleVoiceInput = useCallback(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) return;
@@ -194,20 +195,27 @@ export const InputArea: React.FC<InputAreaProps> = ({
       return;
     }
 
+    voiceBaseTextRef.current = input;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = true;
     recognition.lang = 'en-US';
 
-    recognition.onresult = (event: { results: { [key: number]: { [key: number]: { transcript: string } } }; length?: number }) => {
-      let transcript = '';
+    recognition.onresult = (event: { results: { [key: number]: { [key: number]: { transcript: string }; isFinal?: boolean } }; resultIndex?: number }) => {
+      let finalTranscript = '';
+      let interimTranscript = '';
       const results = event.results;
       for (const key in results) {
         if (results[key]?.[0]?.transcript) {
-          transcript += results[key][0].transcript;
+          if (results[key].isFinal) {
+            finalTranscript += results[key][0].transcript;
+          } else {
+            interimTranscript += results[key][0].transcript;
+          }
         }
       }
-      setInput(prev => prev + transcript);
+      const transcript = finalTranscript || interimTranscript;
+      setInput(voiceBaseTextRef.current + (voiceBaseTextRef.current ? ' ' : '') + transcript);
     };
 
     recognition.onend = () => setIsListening(false);
@@ -216,7 +224,7 @@ export const InputArea: React.FC<InputAreaProps> = ({
     recognition.start();
     recognitionRef.current = recognition;
     setIsListening(true);
-  }, [isListening]);
+  }, [isListening, input]);
 
   const charPercent = Math.min(100, (input.length / maxChars) * 100);
   const charWarning = input.length > maxChars * 0.9;

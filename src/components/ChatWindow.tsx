@@ -328,8 +328,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ apiKey, chatId, onOpenSi
   const handleSend = async (content: string) => {
     if (!content.trim() || isGenerating) return;
 
-    const sanitizedContent = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    setInputHistory(prev => [...prev.slice(-50), content]);
+    const sanitizedContent = content.trim();
+    setInputHistory(prev => [...prev.slice(-50), sanitizedContent]);
     setShowTemplates(false);
 
     const userMessage: Message = {
@@ -540,7 +540,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({ apiKey, chatId, onOpenSi
   };
 
   return (
-    <div className="flex-1 flex flex-col h-screen relative overflow-hidden">
+    <div className="flex-1 flex flex-col h-[100dvh] relative overflow-hidden">
       {/* Scroll Progress Indicator */}
       {messages.length > 0 && (
         <div className="absolute top-14 left-0 right-0 h-[2px] bg-white/[0.03] z-20">

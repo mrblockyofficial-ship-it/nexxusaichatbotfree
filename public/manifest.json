@@ -1,0 +1,21 @@
+{
+  "name": "Nexxus AI - Free AI Chatbot",
+  "short_name": "Nexxus AI",
+  "description": "Free AI chatbot powered by GPT-4o, Claude 3.5, Gemini 2.5 and more. Chat with multiple AI models, generate images, and get instant answers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0f1c",
+  "theme_color": "#0a0f1c",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

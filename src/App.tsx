@@ -60,6 +60,10 @@ function App() {
     setSessions(prev => prev.map(s => s.id === id ? { ...s, bookmarked: !s.bookmarked } : s));
   }, [setSessions]);
 
+  const handleRenameSession = useCallback((id: string, newTitle: string) => {
+    setSessions(prev => prev.map(s => s.id === id ? { ...s, title: newTitle } : s));
+  }, [setSessions]);
+
   const handleApiKeyChange = useCallback((key: string) => {
     setApiKey(key);
     localStorage.setItem("openrouter_api_key", key);
@@ -73,7 +77,7 @@ function App() {
   useKeyboardShortcuts(shortcuts);
 
   return (
-    <div className="flex h-screen w-full bg-surface-50 text-gray-100 overflow-hidden relative">
+    <div className="flex h-[100dvh] w-full bg-surface-50 text-gray-100 overflow-hidden relative">
       {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (
         <div
@@ -92,6 +96,7 @@ function App() {
           onClearAll={() => setShowClearAll(true)}
           onTogglePin={handleTogglePin}
           onToggleBookmark={handleToggleBookmark}
+          onRenameSession={handleRenameSession}
         />
       </div>
 

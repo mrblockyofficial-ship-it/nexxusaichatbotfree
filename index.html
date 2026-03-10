@@ -1,17 +1,141 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#0a0f1c" />
-    <meta name="description" content="Nexxus AI — Next-generation AI assistant powered by advanced language models" />
     <meta name="color-scheme" content="dark" />
-    <title>Nexxus AI</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Nexxus AI - Free AI Chatbot | GPT-4o, Claude, Gemini & More</title>
+    <meta name="title" content="Nexxus AI - Free AI Chatbot | GPT-4o, Claude, Gemini & More" />
+    <meta name="description" content="Nexxus AI is a free, powerful AI chatbot powered by GPT-4o, Claude 3.5, Gemini 2.5 & more. Chat with multiple AI models, generate images, code, write content, and get instant answers. No signup required." />
+    <meta name="keywords" content="AI chatbot, free AI, GPT-4o, Claude 3.5, Gemini, AI assistant, chatbot online, free chatbot, AI image generator, code assistant, writing assistant, AI chat, language model, LLM, Nexxus AI, artificial intelligence, deep thinking AI, multi-model AI" />
+    <meta name="author" content="Nexxus AI" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://nexxus-ai.web.app/" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://openrouter.ai" />
+    <link rel="dns-prefetch" href="https://openrouter.ai" />
+    <link rel="preconnect" href="https://backend.buildpicoapps.com" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nexxus-ai.web.app/" />
+    <meta property="og:title" content="Nexxus AI - Free AI Chatbot | GPT-4o, Claude, Gemini & More" />
+    <meta property="og:description" content="Chat with multiple AI models for free. GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Flash - all in one place. Generate images, write code, get instant answers." />
+    <meta property="og:image" content="https://nexxus-ai.web.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nexxus AI - Free AI Chatbot Interface" />
+    <meta property="og:site_name" content="Nexxus AI" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://nexxus-ai.web.app/" />
+    <meta name="twitter:title" content="Nexxus AI - Free AI Chatbot | GPT-4o, Claude, Gemini & More" />
+    <meta name="twitter:description" content="Chat with multiple AI models for free. Generate images, write code, get instant answers. No signup required." />
+    <meta name="twitter:image" content="https://nexxus-ai.web.app/og-image.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nexxus AI" />
+    <meta name="application-name" content="Nexxus AI" />
+    <meta name="msapplication-TileColor" content="#0a0f1c" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Nexxus AI",
+      "alternateName": "Nexxus AI Chatbot",
+      "url": "https://nexxus-ai.web.app/",
+      "description": "Free AI chatbot powered by GPT-4o, Claude 3.5, Gemini 2.5 and more. Chat with multiple AI models, generate images, write code, and get instant answers.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Multi-model AI chat (GPT-4o, Claude 3.5, Gemini 2.5)",
+        "AI Image Generation",
+        "Code Generation and Debugging",
+        "Voice Input",
+        "Chat Export (TXT, JSON, Markdown)",
+        "Deep Thinking Mode",
+        "Streaming Responses",
+        "File Attachments"
+      ],
+      "screenshot": "https://nexxus-ai.web.app/og-image.png"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Nexxus AI free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Nexxus AI is completely free to use with our default AI model. You can also bring your own OpenRouter API key to access premium models like GPT-4o, Claude 3.5 Sonnet, and Gemini."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AI models does Nexxus AI support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nexxus AI supports multiple AI models including StepFun Step 3.5 Flash (free), Google Gemini 2.5 Flash, Anthropic Claude 3.5 Sonnet, and OpenAI GPT-4o."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Nexxus AI generate images?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, Nexxus AI can generate images. Simply type /image followed by a description of the image you want to create."
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Adsterra Social Bar -->
-    <script type="text/javascript" src="https://pl28801247.effectivegatecpm.com/88/0b/f3/880bf3abc204524a11d46021ca0f2c5f.js"></script>
+    <script type="text/javascript" src="https://pl28801247.effectivegatecpm.com/88/0b/f3/880bf3abc204524a11d46021ca0f2c5f.js" defer></script>
   </head>
   <body>
+    <!-- Noscript fallback for SEO -->
+    <noscript>
+      <div style="padding:2rem;text-align:center;background:#0a0f1c;color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,sans-serif;">
+        <h1>Nexxus AI - Free AI Chatbot</h1>
+        <p>Nexxus AI is a powerful, free AI chatbot that lets you chat with multiple AI models including GPT-4o, Claude 3.5 Sonnet, and Gemini 2.5 Flash.</p>
+        <h2>Features</h2>
+        <ul style="text-align:left;max-width:600px;">
+          <li>Chat with multiple AI models (GPT-4o, Claude 3.5 Sonnet, Gemini 2.5 Flash)</li>
+          <li>AI Image Generation with /image command</li>
+          <li>Deep Thinking mode for detailed, structured responses</li>
+          <li>Voice input support</li>
+          <li>Code generation with syntax highlighting</li>
+          <li>Export conversations as TXT, JSON, or Markdown</li>
+          <li>File attachments and drag-and-drop</li>
+          <li>Free to use - no signup required</li>
+        </ul>
+        <p>Please enable JavaScript to use Nexxus AI.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

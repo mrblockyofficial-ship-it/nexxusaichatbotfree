@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, PenLine, BarChart3, Code2, Palette, Brain, Zap, Globe, Image, MessageSquare } from 'lucide-react';
+import { Sparkles, PenLine, BarChart3, Code2, Palette, Brain, Zap, Globe, Image, MessageSquare, Lightbulb, GraduationCap } from 'lucide-react';
 
 interface WelcomeScreenProps {
   greeting: string;
@@ -11,7 +11,6 @@ const categories = [
   {
     label: 'Write',
     icon: PenLine,
-    color: 'from-blue-500 to-cyan-400',
     bgColor: 'bg-blue-500/10',
     borderColor: 'border-blue-500/20',
     iconColor: 'text-blue-400',
@@ -23,7 +22,6 @@ const categories = [
   {
     label: 'Analyze',
     icon: BarChart3,
-    color: 'from-emerald-500 to-teal-400',
     bgColor: 'bg-emerald-500/10',
     borderColor: 'border-emerald-500/20',
     iconColor: 'text-emerald-400',
@@ -35,7 +33,6 @@ const categories = [
   {
     label: 'Code',
     icon: Code2,
-    color: 'from-violet-500 to-purple-400',
     bgColor: 'bg-violet-500/10',
     borderColor: 'border-violet-500/20',
     iconColor: 'text-violet-400',
@@ -47,7 +44,6 @@ const categories = [
   {
     label: 'Create',
     icon: Palette,
-    color: 'from-pink-500 to-rose-400',
     bgColor: 'bg-pink-500/10',
     borderColor: 'border-pink-500/20',
     iconColor: 'text-pink-400',
@@ -56,13 +52,35 @@ const categories = [
       'Design a social media content strategy',
     ],
   },
+  {
+    label: 'Learn',
+    icon: GraduationCap,
+    bgColor: 'bg-amber-500/10',
+    borderColor: 'border-amber-500/20',
+    iconColor: 'text-amber-400',
+    prompts: [
+      'Teach me the basics of machine learning',
+      'Explain how blockchain technology works',
+    ],
+  },
+  {
+    label: 'Brainstorm',
+    icon: Lightbulb,
+    bgColor: 'bg-cyan-500/10',
+    borderColor: 'border-cyan-500/20',
+    iconColor: 'text-cyan-400',
+    prompts: [
+      'Give me 10 startup ideas for 2025',
+      'Help me brainstorm a name for my app',
+    ],
+  },
 ];
 
 const capabilities = [
   { icon: Brain, label: 'Reasoning', color: 'text-violet-400' },
   { icon: Code2, label: 'Code Gen', color: 'text-emerald-400' },
   { icon: Image, label: 'Image Creation', color: 'text-pink-400' },
-  { icon: Globe, label: 'Web Search', color: 'text-cyan-400' },
+  { icon: Globe, label: 'Multi-Model', color: 'text-cyan-400' },
   { icon: Zap, label: 'Fast Responses', color: 'text-amber-400' },
 ];
 
@@ -86,13 +104,13 @@ const itemVariants = {
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ greeting, onSend }) => {
   return (
     <motion.div
-      className="h-full flex flex-col items-center justify-center p-6 md:p-8"
+      className="h-full flex flex-col items-center justify-center p-6 md:p-8 overflow-y-auto"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       {/* Logo */}
-      <motion.div variants={itemVariants} className="relative mb-8">
+      <motion.div variants={itemVariants} className="relative mb-6">
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-accent to-purple-600 blur-2xl opacity-30 animate-pulse-ring" />
         <div className="relative w-20 h-20 rounded-3xl bg-gradient-to-tr from-accent to-purple-600 flex items-center justify-center shadow-2xl glow-accent-lg">
           <Sparkles size={36} className="text-white" />
@@ -102,21 +120,21 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ greeting, onSend }
       {/* Greeting */}
       <motion.h1
         variants={itemVariants}
-        className="text-4xl md:text-5xl font-bold text-gradient mb-3 tracking-tight text-center"
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-gradient mb-3 tracking-tight text-center"
       >
         {greeting}
       </motion.h1>
       <motion.p
         variants={itemVariants}
-        className="text-gray-400 text-base md:text-lg max-w-xl text-center mb-10 leading-relaxed"
+        className="text-gray-400 text-sm sm:text-base md:text-lg max-w-xl text-center mb-8 leading-relaxed"
       >
-        Experience the next generation of AI. Choose a prompt below or type your own.
+        Your free AI assistant powered by 15+ models. Write, code, analyze, and create.
       </motion.p>
 
       {/* Capability Pills */}
       <motion.div
         variants={itemVariants}
-        className="flex flex-wrap items-center justify-center gap-2 mb-10"
+        className="flex flex-wrap items-center justify-center gap-2 mb-8"
       >
         {capabilities.map((cap) => (
           <div
@@ -132,11 +150,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ greeting, onSend }
       {/* Categorized Suggestion Grid */}
       <motion.div
         variants={itemVariants}
-        className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-3xl"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl"
       >
         {categories.map((cat) => (
           <div key={cat.label} className="space-y-2">
-            <div className={`flex items-center gap-2 px-1 mb-1`}>
+            <div className="flex items-center gap-2 px-1 mb-1">
               <div className={`w-6 h-6 rounded-lg ${cat.bgColor} flex items-center justify-center`}>
                 <cat.icon size={14} className={cat.iconColor} />
               </div>
@@ -166,7 +184,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ greeting, onSend }
         className="flex items-center gap-2 mt-8 text-xs text-gray-500"
       >
         <MessageSquare size={12} />
-        <span>Press <kbd className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] font-mono text-[10px]">Enter</kbd> to send a message</span>
+        <span>Press <kbd className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] font-mono text-[10px]">Enter</kbd> to send &middot; <kbd className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] font-mono text-[10px]">Ctrl+N</kbd> new chat &middot; <kbd className="px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.08] font-mono text-[10px]">Ctrl+/</kbd> toggle sidebar</span>
       </motion.div>
     </motion.div>
   );

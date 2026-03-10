@@ -123,7 +123,11 @@ export const StreamingRenderer: React.FC<StreamingRendererProps> = ({ content, i
 
   // Format inline markdown
   const formatText = (text: string) => {
-    let formatted = text;
+    // Escape HTML entities first to prevent XSS
+    let formatted = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
     // Bold
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-white">$1</strong>');
     // Inline code

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, Plus, User, LogOut, Search, Trash2, Zap, PanelLeftClose, PanelLeftOpen, Pin, Bookmark, Star, Edit3, ChevronDown, ChevronRight } from 'lucide-react';
+import { MessageSquare, Plus, Search, Trash2, PanelLeftClose, PanelLeftOpen, Pin, Bookmark, Star, Edit3, ChevronDown, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { AdsterraAd } from './AdsterraAd';
 import type { ChatSession } from '../types';
@@ -13,6 +13,7 @@ interface SidebarProps {
   onClearAll: () => void;
   onTogglePin: (id: string) => void;
   onToggleBookmark: (id: string) => void;
+  onRenameSession: (id: string, newTitle: string) => void;
 }
 
 // Date grouping helper
@@ -40,6 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onClearAll,
   onTogglePin,
   onToggleBookmark,
+  onRenameSession,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -146,16 +148,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
   };
 
   const handleRenameSubmit = () => {
-    // Note: we don't have an onRename prop, so renaming is visual-only for now
+    if (renamingId && renameValue.trim()) {
+      onRenameSession(renamingId, renameValue.trim());
+    }
     setRenamingId(null);
   };
 
   const chatCount = sessions.length;
-  const remainingChats = Math.max(0, 50 - chatCount);
 
   if (isCollapsed) {
     return (
-      <div className="w-16 h-screen glass-panel border-r border-white/[0.06] flex flex-col items-center py-4 bg-surface-50 md:bg-transparent transition-all duration-300">
+      <div className="w-16 h-[100dvh] glass-panel border-r border-white/[0.06] flex flex-col items-center py-4 bg-surface-50 md:bg-transparent transition-all duration-300">
         <button onClick={() => setIsCollapsed(false)} className="p-2 text-gray-400 hover:text-white hover:bg-white/[0.06] rounded-xl transition-colors mb-4" title="Expand sidebar" aria-label="Expand sidebar">
           <PanelLeftOpen size={20} />
         </button>
@@ -178,11 +181,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <MessageSquare size={14} />
             </button>
           ))}
-        </div>
-        <div className="mt-auto">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-accent to-violet-500 flex items-center justify-center shadow-inner" title="My Account">
-            <User size={14} className="text-white" />
-          </div>
         </div>
       </div>
     );
@@ -273,7 +271,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <div
-      className="h-screen glass-panel border-r border-white/[0.06] flex flex-col bg-surface-50 md:bg-transparent transition-all duration-300 relative"
+      className="h-[100dvh] glass-panel border-r border-white/[0.06] flex flex-col bg-surface-50 md:bg-transparent transition-all duration-300 relative"
       style={{ width: sidebarWidth }}
     >
       {/* Resize handle */}
@@ -408,19 +406,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <AdsterraAd slotId="a4e175d89972559cf98a92cbfd41e417" width={300} height={250} type="sidebar" />
         </div>
 
-        <div className="mb-4 px-1">
-          <div className="flex justify-between text-[11px] text-gray-500 mb-1.5">
-            <span>Free Plan</span>
-            <span className="font-mono">{remainingChats} remaining</span>
-          </div>
-          <div className="w-full h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-            <div
-              className="h-full rounded-full transition-all bg-gradient-to-r from-accent to-violet-500"
-              style={{ width: `${Math.min(100, (chatCount / 50) * 100)}%` }}
-            />
-          </div>
-        </div>
-
         <div className="space-y-0.5">
           <button
             onClick={onClearAll}
@@ -429,17 +414,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           >
             <Trash2 size={16} />
             <span className="text-[13px]">Clear conversations</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-amber-500/[0.06] text-amber-400 hover:text-amber-300 transition-colors group">
-            <Zap size={16} className="group-hover:fill-amber-400/20" />
-            <span className="text-[13px] font-medium">Upgrade Plan</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-white/[0.04] text-gray-300 hover:text-white transition-colors mt-1">
-            <div className="w-7 h-7 rounded-xl bg-gradient-to-br from-accent to-violet-500 flex items-center justify-center shadow-inner">
-              <User size={13} className="text-white" />
-            </div>
-            <span className="text-[13px] flex-1 text-left font-medium">My Account</span>
-            <LogOut size={14} className="text-gray-600 hover:text-red-400 transition-colors" />
           </button>
         </div>
       </div>

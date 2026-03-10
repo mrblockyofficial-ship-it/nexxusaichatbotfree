@@ -316,6 +316,36 @@
   outline-offset: 2px;
 }
 
+/* ── Touch target sizing for mobile ───────────── */
+@media (pointer: coarse) {
+  button, [role="button"], a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  /* Allow smaller buttons in dense areas like toolbars */
+  .dense-actions button {
+    min-height: 36px;
+    min-width: 36px;
+  }
+}
+
+/* ── Fluid typography ────────────────────────────── */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* ── Safe area insets for notched devices ────────── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
 /* ── Reduced motion ────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
